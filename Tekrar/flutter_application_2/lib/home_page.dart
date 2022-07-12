@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+
+import 'video_info.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -95,10 +98,15 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   width: 5,
                 ),
-                Icon(
-                  Icons.arrow_forward,
-                  color: Colors.blueGrey[800],
-                  size: 20,
+                InkWell(
+                  onTap: () {
+                    Get.to(() => VideoInfo());
+                  },
+                  child: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.blueGrey[800],
+                    size: 20,
+                  ),
                 ),
               ],
             ),
@@ -312,91 +320,99 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: OverflowBox(
                 maxWidth: MediaQuery.of(context).size.width,
-                child: ListView.builder(
-                    itemCount: (info.length.toDouble() / 2).toInt(),
-                    itemBuilder: (_, i) {
-                      int a = 2 * i;
-                      int b = 2 * i + 1;
-                      return Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(
-                              left: 25,
-                              bottom: 30,
-                            ),
-                            height: 150,
-                            width: (MediaQuery.of(context).size.width - 90) / 2,
-                            padding: EdgeInsets.only(bottom: 5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                image: AssetImage(info[a]['img']),
+                child: MediaQuery.removePadding(
+                  removeTop: true,
+                  context: context,
+                  child: ListView.builder(
+                      itemCount: (info.length.toDouble() / 2).toInt(),
+                      itemBuilder: (_, i) {
+                        int a = 2 * i;
+                        int b = 2 * i + 1;
+                        return Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(
+                                left: 25,
+                                bottom: 30,
+                                top: 10,
                               ),
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 3,
-                                    offset: Offset(5, 5),
-                                    color: Colors.indigo.shade100),
-                                BoxShadow(
-                                    blurRadius: 3,
-                                    offset: Offset(-5, -5),
-                                    color: Colors.indigo.shade100),
-                              ],
-                            ),
-                            child: Center(
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(
-                                  info[a]['title'],
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.black87),
+                              height: 150,
+                              width:
+                                  (MediaQuery.of(context).size.width - 90) / 2,
+                              padding: EdgeInsets.only(bottom: 5),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                  image: AssetImage(info[i]['img']),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 3,
+                                      offset: Offset(5, 5),
+                                      color: Colors.indigo.shade100),
+                                  BoxShadow(
+                                      blurRadius: 3,
+                                      offset: Offset(-5, -5),
+                                      color: Colors.indigo.shade100),
+                                ],
+                              ),
+                              child: Center(
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Text(
+                                    info[i]['title'],
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.black87),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            height: 150,
-                            width: (MediaQuery.of(context).size.width - 90) / 2,
-                            margin: EdgeInsets.only(
-                              left: 25,
-                              bottom: 30,
+                            SizedBox(
+                              width: 10,
                             ),
-                            padding: EdgeInsets.only(bottom: 5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                image: AssetImage(info[b]['img']),
+                            Container(
+                              height: 150,
+                              width:
+                                  (MediaQuery.of(context).size.width - 90) / 2,
+                              margin: EdgeInsets.only(
+                                left: 25,
+                                bottom: 30,
+                                top: 10,
                               ),
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 3,
-                                    offset: Offset(5, 5),
-                                    color: Colors.indigo.shade100),
-                                BoxShadow(
-                                    blurRadius: 3,
-                                    offset: Offset(-5, -5),
-                                    color: Colors.indigo.shade100),
-                              ],
-                            ),
-                            child: Center(
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(
-                                  info[b]['title'],
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.black87),
+                              padding: EdgeInsets.only(bottom: 5),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                  image: AssetImage(info[b]['img']),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 3,
+                                      offset: Offset(5, 5),
+                                      color: Colors.indigo.shade100),
+                                  BoxShadow(
+                                      blurRadius: 3,
+                                      offset: Offset(-5, -5),
+                                      color: Colors.indigo.shade100),
+                                ],
+                              ),
+                              child: Center(
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Text(
+                                    info[b]['title'],
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.black87),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      );
-                    }),
+                          ],
+                        );
+                      }),
+                ),
               ),
             ),
           ],
