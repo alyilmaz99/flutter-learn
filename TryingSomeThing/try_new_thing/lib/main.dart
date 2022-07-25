@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:try_new_thing/view/arc_progress.dart';
 import 'package:try_new_thing/view/intro_page_view.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const IntroPage(),
+      home: const CircularArc(),
     );
   }
 }
